@@ -1,0 +1,17 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+/* Custom CSS for React Slick controls */
+.slick-prev, .slick-next {
+color: black;
+background-color: gray;
+border-radius: 50px;
+}
+
+
+/* You can also style the controls on hover */
+.slick-prev:hover, .slick-next:hover {
+  color: black;
+background-color: gray;
+}
