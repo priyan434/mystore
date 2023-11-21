@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import {
   addtocart,
   increasequantity,
@@ -45,6 +47,27 @@ const SingleProduct = () => {
       setCount(count - 1);
     }
   };
+  const handleaddtocart=()=>{
+    toast.success("Added to cart !",  {
+      position: "bottom-right",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",});
+    dispatch(
+      addtocart({
+        name,
+        category,
+        price,
+        count,
+        imageSrc,
+        id,
+      })
+    )
+  }
 
   // Render the product details
   return (
@@ -150,18 +173,10 @@ const SingleProduct = () => {
                   <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
                     <button
                       className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300"
-                      onClick={() =>
-                        dispatch(
-                          addtocart({
-                            name,
-                            category,
-                            price,
-                            count,
-                            imageSrc,
-                            id,
-                          })
-                        )
-                      }
+                      onClick={handleaddtocart}
+                      
+                        
+                      
                     >
                       Add to Cart
                     </button>
@@ -176,6 +191,8 @@ const SingleProduct = () => {
             </div>
           </div>
         </div>
+        <ToastContainer 
+         />
       </section>
     </div>
   );

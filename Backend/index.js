@@ -72,8 +72,11 @@ app.post('/api/send-email', async (req, res) => {
 
   try {
     // Send the email
-    await transporter.sendMail(mailOptions);
-    res.status(200).send('Email sent successfully');
+    const result=await transporter.sendMail(mailOptions);
+if(result.accepted){
+  res.status(200).send('Email sent successfully');
+}
+    
   } catch (error) {
     console.error('Error sending email:', error);
     res.status(500).send('Internal Server Error');

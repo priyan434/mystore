@@ -7,7 +7,9 @@ const [weeksales,setWeeksales]=useState([])
 useEffect(()=>{
    async function fetchdata(){
     const res=await axios.get('http://localhost:5000/api/stats/week-sales',setheader());
-    res.data.sort((a,b)=>a.total-b.total);
+
+    res.data.sort((a,b)=>b.total-a.total);
+
     const newData=res.data.map((item)=>{
         const Days=[
             "Sun",

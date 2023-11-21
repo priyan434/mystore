@@ -3,9 +3,31 @@ import { Link } from "react-router-dom";
 import BasicRating from "./BasicRating";
 import { useDispatch } from "react-redux";
 import { addtocart } from "../../Features/CartSlice";
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 const ProductCard = ({ product }) => {
   const dispatch=useDispatch();
+const handleaddtocart=()=>{
+  // console.log("count");
+  toast.success("Added to cart !",  {
+    position: "bottom-right",
+    autoClose: 1000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    theme: "light",});
 
+  dispatch(addtocart({
+    id:product.id,
+    name:product.name,
+    category:product.category,
+    price:product.price,
+    imageSrc:product.imageSrc,
+  
+  }))
+}
   return (
     <>
 
@@ -49,20 +71,15 @@ const ProductCard = ({ product }) => {
             </div>
             <button
               type="button"
-              onClick={()=>dispatch(addtocart({
-                id:product.id,
-                name:product.name,
-                category:product.category,
-                price:product.price,
-                imageSrc:product.imageSrc,
-              
-              }))}
+              onClick={handleaddtocart}
               className="bg-blue-500 relative -z-4 hover:bg-blue-600 text-white text-sm py-2 px-4 rounded-lg transition duration-300 transform hover:scale-105"
             >
               Add to Cart
             </button>
           </div>
         </div>
+        <ToastContainer 
+         />
       </div>
     </>
   );

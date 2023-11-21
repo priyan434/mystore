@@ -15,7 +15,7 @@ const Summary = () => {
           "http://localhost:5000/api/stats",
           setheader()
         );
-        console.log(res.data);
+        // console.log(res.data);
         setRT(res.data);
       }
       fetchData();
@@ -64,7 +64,8 @@ const Summary = () => {
                       {order.total / 100}
                     </td>
                     <td className="py-2 px-4 border border-gray-900">
-                      {moment(order.createdAT).fromNow()}
+                    {moment(order.createdAt).fromNow()}
+
                     </td>
                   </tr>
                 ))

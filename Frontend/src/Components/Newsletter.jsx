@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios"
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 const Newsletter = () => {
   
   const [formData, setFormData] = useState({
@@ -17,7 +19,6 @@ const Newsletter = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-console.log("hello");
     // // Assume you have a server endpoint to handle the form data
     // const response = await fetch('http://localhost:5000/api/send-email', {
     //   method: 'POST',
@@ -34,9 +35,19 @@ console.log("hello");
     //   // Handle error (e.g., show an error message)
     //   console.error('Error sending email');
     // }
+    toast.info("Sending mail !", {
+      position: toast.POSITION.TOP_RIGHT
+    });
     const response=await axios.post('http://localhost:5000/api/send-email',formData)
+ 
+   
     if(response){
             console.log('Email sent successfully!');
+            setFormData({ email: '' });
+            toast.success("mail successfully sent !", {
+              position: toast.POSITION.TOP_RIGHT
+            });
+            
     }
     else{   
       console.log("error sending email");
@@ -108,6 +119,7 @@ console.log("hello");
                 .
               </div>
             </form>
+            <ToastContainer />
           </div>
         </div>
       </section>

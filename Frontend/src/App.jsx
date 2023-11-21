@@ -17,8 +17,11 @@ import Dashboard from "./Admin/Dashboard";
 import Ad_products from "./Admin/Ad_products";
 import Summary from "./Admin/Summary";
 import Pro from "./Pages/Pro";
-import AD_pro from "./Admin/AD_pro";
-
+import About from "./Pages/About";
+import Contact from "./Pages/Contact";
+import Herosection from "./Components/Herosection";
+// import AD_pro from "./Admin/AD_pro";
+// stripe listen --forward-to localhost:5000/api/stripe/webhook
 export default function App() {
   return (
     <BrowserRouter>
@@ -30,10 +33,13 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/cart" element={<Cart />} />
+        {/* <Route path="/about" element={<About />} /> */}
+        <Route path="/contact" element={<Contact />} />
         <Route path="/pro" element={<Pro />} />
         <Route path="/checkout-success" element={<CheckoutSucess />} />
         <Route path="/SingleProduct/:id" element={<SingleProduct />} />
-        <Route path="/adpro" element={<AD_pro/>}/>
+        <Route path="/about" element={<Herosection/>} />
+        {/* <Route path="/adpro" element={<AD_pro/>}/> */}
         <Route path="*" element={<NoPage />} />
   
           <Route path="/admin" element={<Dashboard/>}>

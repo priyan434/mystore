@@ -2,9 +2,9 @@ import React from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 const PayButton = ({cartitems}) => {
-  console.log(typeof(cartitems));
-  const car= JSON.stringify(cartitems)
-  console.log(car);
+  // console.log(typeof(cartitems));
+  // const car= JSON.stringify(cartitems)
+  // console.log(car);
     const user=useSelector((state)=>state.auth)
     const handlecheckout=()=>{
         console.log("checkout");

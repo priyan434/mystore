@@ -15,10 +15,12 @@ const CartSlice=createSlice({
           state.cartItems[index].count+=action.payload.count;
           }
           else{
-            
-            state.cartItems.push({
+            if(action.payload.price){
+              state.cartItems.push({
                 ...action.payload,"count":action.payload.count||1,
             });
+            }
+         
           }
           }
     
