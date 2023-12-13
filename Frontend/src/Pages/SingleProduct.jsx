@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+
+
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -12,6 +14,7 @@ import {
 import StarRatings from "../Components/StarRatings";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductsFetch, getSingleProduct } from "../../Features/ProductSlice";
+import BasicRating from "../Components/BasicRating";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -98,7 +101,8 @@ const SingleProduct = () => {
                   </h2>
                   <div className="flex items-center mb-6">
                     {/* Render star ratings here using a reusable component */}
-                    <StarRatings rating={rating} />
+                   
+                    <BasicRating rating={rating} />
                     <p className="text-xs dark:text-gray-400">
                       (120 customer reviews)
                     </p>
@@ -109,7 +113,7 @@ const SingleProduct = () => {
                   <p className="inline-block mb-8 text-4xl font-bold text-gray-700 dark:text-gray-400">
                     <span> ~{price}</span>
                     <span className="text-base font-normal text-gray-500 line-through dark:text-gray-400">
-                      {price + 67}
+                      {Math.floor(price+67)}
                     </span>
                   </p>
                   <p className="text-green-600 dark:text-green-300">

@@ -32,7 +32,7 @@ const Summary = () => {
       <div className="flex items-center justify-center mt-40">
         <div className="flex flex-col  rounded w-full bg-gray-50 h-28 dark:bg-gray-800 p-0 items-center">
           <Linechart />
-          <p>weekly Transcations </p>
+          <p className="font-bold">weekly Transcations </p>
         </div>
 
     

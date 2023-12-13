@@ -18,7 +18,7 @@ const Users = () => {
             try{
               
                 const res=await axios.get('http://localhost:5000/api/stats/userstats',setheader())
-               res.data.sort((a,b)=>b.total-a.total);
+                    res.data.sort((a,b)=>b.total-a.total);
                 setUserstats(res.data);
                 setUserPercentage(((res.data[0].total-res.data[1].total)/res.data[1].total)*100)
          
@@ -36,6 +36,7 @@ const Users = () => {
             try{
                 
                 const res=await axios.get('http://localhost:5000/api/stats/orderstats',setheader())
+                console.log("users",res.data);
                res.data.sort((a,b)=>b.total-a.total);
                 setOrderstats(res.data);
                 setOrderPercentage(((res.data[0].total-res.data[1].total)/res.data[1].total)*100)

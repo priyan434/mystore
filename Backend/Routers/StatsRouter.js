@@ -4,7 +4,7 @@ const router = require("express").Router();
 router.get('/userstats',isAdmin,user)
 router.get('/orderstats',isAdmin,orders)
 router.get('/earningstats',isAdmin,Earnings)
-router.get('/week-sales',isAdmin,WeekEarnings)
+router.get('/week-sales',WeekEarnings)
 router.get('/',isAdmin,recentTranscations)
 
 module.exports = router;

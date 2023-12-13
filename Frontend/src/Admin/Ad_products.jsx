@@ -136,7 +136,7 @@ const Ad_products = () => {
       // Handle other cases if necessary
     }
   }, [addproductstatus]);
-
+  const products2 = useSelector((state) => state.filter.filter);
   return (
     <div>
       {/* <!-- Start block --> */}
@@ -203,23 +203,21 @@ const Ad_products = () => {
                   </button> */}
                   <div className="dropdown">
                     <label tabIndex={0} className="btn m-1">
-                      Action
+                      Category
                     </label>
                     <ul
                       tabIndex={0}
                       className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
                     >
-                      <li>
-                        <a>Item 1</a>
-                      </li>
-                      <li>
-                        <a>Item 2</a>
-                      </li>
+                      {category2.map(item=>{
+                        return <li className="cursor-pointer text-sm font-semibold p-1 ">{item}</li>
+                      })}
+                      
                     </ul>
                   </div>
                   <div className="dropdown">
                     <label tabIndex={0} className="btn m-1">
-                      Action  
+                      Filter  
                     </label>
                     <ul
                       tabIndex={0}
@@ -228,9 +226,7 @@ const Ad_products = () => {
                       <li>
                         <a>Item 1</a>
                       </li>
-                      <li>
-                        <a>Item 2</a>
-                      </li>
+         
                     </ul>
                   </div>
                 </div>

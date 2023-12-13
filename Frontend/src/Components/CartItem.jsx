@@ -7,6 +7,8 @@ import {
 } from "../../Features/CartSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
+
 const CartItem = ({ item }) => {
   // console.log(item);
   const dispatch = useDispatch();
@@ -24,15 +26,27 @@ const CartItem = ({ item }) => {
       console.log("minus");
     }
   };
+const handleremove=(item)=>{
+
+    toast.success("removed from cart !",  {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",});
+    dispatch(removefromcart(item));
+  }
 
   return (
     <>
       <div class="flex flex-wrap items-center mb-8 -mx-4 md:mb-8 relative ">
         <div className="absolute -top-2 right-0">
           <button
-            onClick={() => {
-              dispatch(removefromcart(item.id));
-            }}
+          onClick={()=>handleremove(item.id)}
+          
             className=""
           >
             <svg
@@ -126,6 +140,8 @@ const CartItem = ({ item }) => {
             {Math.floor(item.price * item.count)}
           </p>
         </div>
+        <ToastContainer 
+         />
       </div>
     </>
   );

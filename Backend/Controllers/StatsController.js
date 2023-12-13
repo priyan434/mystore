@@ -99,39 +99,48 @@ module.exports.Earnings = async (req, res) => {
       res.status(500).send("Internal Server Error");
     }
   };
+
+
+
 module.exports.WeekEarnings = async (req, res) => {
-    try {
-      const last7Days = moment().subtract(7, 'days');
-  
-      
-      const result = await order.aggregate([
-        {
-          $match: { createdAt: { $gte: new Date(last7Days) } },
-        },
-        {
-          $project: {
-            day: { $dayOfWeek: "$createdAt" },
-            sales:"$total"
-          },
-        },
-        {
-          $group: {
-            _id: "$day",
-            total: { $sum: "$sales" },
-          },
-        },
-      ]);
-  if(result.length>0){
+  try {
+    const last7Days = moment().subtract(7, 'days');
+    // console.log(new Date(last7Days));
+    // const re=await order.find();
+    // console.log(re);
+    const result = await order.aggregate([
+      {
+        $match: { createdAt: { $gte: new Date("2023-01-01T00:00:00.000Z") } }
+      },
+      {
+        $project: {
+          day: { $dayOfWeek: "$createdAt" },
+          sales: "$total"
+        }
+      },
+      {
+        $group: {
+          _id: "$day",
+          total: { $sum: "$sales" }
+        }
+      },
+   
+    ]);
+    // console.log(result);
+
+    if (result) {
       res.status(200).send(result);
-  }
-     else{
+    } else {
       res.status(400).send("error fetching data");
-     }
-    } catch (error) {
-      console.error("Error:", error);
-      res.status(500).send("Internal Server Error");
     }
-  };
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+
+
   module.exports.recentTranscations=async(req,res)=>{
     try {
       const result=await order.find().sort({_id:-1}).limit(4);
